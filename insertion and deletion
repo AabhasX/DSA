@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 100
+
+int tree[SIZE];
+int last = -1;
+
+void insert(int value) {
+    if (last == SIZE - 1) {
+        printf("Tree is full\n");
+        return;
+    }
+    last++;
+    tree[last] = value;
+}
+
+void deleteValue(int value) {
+    if (last == -1) {
+        printf("Tree is empty\n");
+        return;
+    }
+    int i;
+    for (i = 0; i <= last; i++) {
+        if (tree[i] == value) {
+            tree[i] = tree[last];
+            last--;
+            return;
+        }
+    }
+    printf("Value not found\n");
+}
+
+void display() {
+    for (int i = 0; i <= last; i++) {
+        printf("%d ", tree[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    insert(10);
+    insert(20);
+    insert(30);
+    insert(40);
+
+    display();
+
+    deleteValue(20);
+
+    display();
+
+    return 0;
+}
